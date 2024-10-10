@@ -53,8 +53,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalculateLayout() {
     var amountInput by remember { mutableStateOf("") }
-
+    // Mengubah input string menjadi nilai Double, jika tidak valid maka nilainya adalah 0.0
     val amount = amountInput.toDoubleOrNull() ?: 0.0
+    // Menghitung jumlah tip berdasarkan nilai input
     val tip = calculateTip(amount)
 
     Column(
@@ -72,6 +73,7 @@ fun CalculateLayout() {
                 .padding(bottom = 16.dp, top = 40.dp)
                 .align(alignment = Alignment.Start)
         )
+        // Input field untuk memasukkan jumlah tagihan
         EditNumberField(
             value = amountInput,
             onValueChanged = { amountInput = it },
@@ -86,10 +88,11 @@ fun CalculateLayout() {
 }
 
 @Composable
+// Composable untuk input angka dengan TextField
 fun EditNumberField(
     value: String,
-    onValueChanged: (String) -> Unit,
-    modifier: Modifier = Modifier
+    onValueChanged: (String) -> Unit, // Callback untuk memperbarui nilai input
+    modifier: Modifier = Modifier // Modifier opsional untuk mengatur tampilan
 ) {
     TextField(
         value = value,
@@ -110,7 +113,7 @@ private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
     }
 }
 
-
+// Preview untuk menampilkan layout di editor tanpa perlu menjalankan aplikasi
 @Preview(showBackground = true)
 @Composable
 fun CalculateLayoutPreview() {
