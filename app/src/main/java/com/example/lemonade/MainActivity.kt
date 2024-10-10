@@ -43,6 +43,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        
+        /// Mengatur konten dengan tema LemonadeTheme dan memanggil fungsi LemonadeApp
         setContent {
             LemonadeTheme {
                 LemonadeApp()
@@ -54,9 +56,10 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LemonadeApp() {
-
+    
+    // Variabel untuk menyimpan langkah atau state aplikasi saat ini
     var currentStep by remember { mutableStateOf(1) }
-
+    // Variabel untuk menyimpan jumlah "squeeze" yang harus dilakukan
     var squeezeCount by remember { mutableStateOf(0) }
 
     Scaffold(
@@ -73,6 +76,7 @@ fun LemonadeApp() {
                 )
             )
         }
+    # innerPadding biasanya digunakan di lingkungan pengembangan UI (antarmuka pengguna) untuk memberikan jarak antara konten dalam elemen dan batas luar elemen
     ) { innerPadding ->
         Surface(
             modifier = Modifier
@@ -87,6 +91,7 @@ fun LemonadeApp() {
                         textLabelResourceId = R.string.lemon_select,
                         drawableResourceId = R.drawable.lemon_tree,
                         contentDescriptionResourceId = R.string.lemon_tree_content_description,
+                        // Setelah klik gambar, beralih ke langkah 2 dan atur jumlah squeeze secara acak
                         onImageClick = {
                             currentStep = 2
                             squeezeCount = (2..4).random()
@@ -140,6 +145,7 @@ fun LemonTextAndImage(
     onImageClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    // Box mengatur layout yang membungkus Column agar isi dalamnya tersusun dengan baik
     Box(
         modifier = modifier
     ) {
@@ -148,6 +154,7 @@ fun LemonTextAndImage(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxSize()
         ) {
+            // Tombol gambar yang akan diklik oleh pengguna
             Button(
                 onClick = onImageClick,
                 shape = RoundedCornerShape(dimensionResource(R.dimen.button_corner_radius)),
@@ -162,7 +169,9 @@ fun LemonTextAndImage(
                         .padding(dimensionResource(R.dimen.button_interior_padding))
                 )
             }
+            // Spacer memberikan jarak vertikal antara gambar dan teks
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_vertical)))
+            // Menampilkan teks di bawah gambar
             Text(
                 text = stringResource(textLabelResourceId),
                 style = MaterialTheme.typography.bodyLarge
