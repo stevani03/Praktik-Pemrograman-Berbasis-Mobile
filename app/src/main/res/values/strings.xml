@@ -1,0 +1,18 @@
+<resources>
+    <!-- Nama Aplikasi -->
+    <string name="app_name">Movie App</string>
+
+    <!-- Judul Film -->
+    <string name="movie_title_1">Kuasa Gelap </string>
+    <string name="movie_title_2">Spederman</string>
+    <string name="movie_title_3">Perewangan</string>
+    <string name="movie_title_4">Jatuh Cinta Seperti Di Film-Film</string>
+    <string name="movie_title_5">Bila</string>
+
+    <!-- Tahun Rilis -->
+    <string name="release_year">%d</string>
+
+    <!-- Keterangan -->
+    <string name="about">About:</string>
+    <string name="expand_button_content_description">See more or less information about a movie.</string>
+</resources>
